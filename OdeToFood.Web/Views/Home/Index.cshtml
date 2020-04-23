@@ -1,4 +1,4 @@
-﻿@using OdeToFood.Data.Models
+﻿@model IEnumerable<OdeToFood.Data.Models.Restaurant>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -10,17 +10,19 @@
 </div>
 
 <div class="row">
+   @($"There are {Model.Count()} Restaurants")
+
     <table>
         <tr>
             <th>Restaurant Name</th>
             <th>Cuisine</th>
         </tr>
-        @foreach (Restaurant restaurant in Model)
-        {
-            <tr>
-                <th>@restaurant.Name</th>
-                <th>@restaurant.Cuisine.ToString()</th>
-            </tr>
-        }
+        @*@foreach (Restaurant restaurant in Model)
+            {
+                <tr>
+                    <th>@restaurant.Name</th>
+                    <th>@restaurant.Cuisine.ToString()</th>
+                </tr>
+            }*@
     </table>
 </div>
