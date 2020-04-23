@@ -19,18 +19,27 @@
     }
     @($"There are {numberOfRestauraunt} Restaurant{pluralS}")
 
-
-    <table>
-        <tr>
-            <th>Restaurant Name</th>
-            <th>Cuisine</th>
-        </tr>
-        @*@foreach (Restaurant restaurant in Model)
-            {
+    <div class="row">
+        <div class="col-sm-4">
+            <table class="table table-bordered table-hover table-responsive">
                 <tr>
-                    <th>@restaurant.Name</th>
-                    <th>@restaurant.Cuisine.ToString()</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Restaurant Name</th>
+                    <th scope="col">Cuisine</th>
                 </tr>
-            }*@
-    </table>
+
+                @{int i = 0;}
+                @foreach (var restaurant in Model)
+                {
+                    i++;
+                    <tr>
+                        <td>@i</td>
+                        <th>@restaurant.Name</th>
+                        <th>@restaurant.Cuisine.ToString()</th>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div> 
+    
 </div>
