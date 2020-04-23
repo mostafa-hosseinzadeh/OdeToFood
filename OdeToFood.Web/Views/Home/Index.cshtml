@@ -10,7 +10,15 @@
 </div>
 
 <div class="row">
-   @($"There are {Model.Count()} Restaurants")
+    @{
+        var numberOfRestauraunt = @Model.Count();
+        string pluralS = "";
+    }
+    @{
+        if (numberOfRestauraunt > 1) { pluralS = "s"; }
+    }
+    @($"There are {numberOfRestauraunt} Restaurant{pluralS}")
+
 
     <table>
         <tr>
