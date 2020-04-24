@@ -1,0 +1,42 @@
+﻿@model IEnumerable<OdeToFood.Data.Models.Restaurant>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<div class="row">
+    @{
+        var numberOfRestauraunt = @Model.Count();
+        string pluralS = "";
+    }
+    @{
+        if (numberOfRestauraunt > 1) { pluralS = "s"; }
+    }
+    @($"There are {numberOfRestauraunt} Restaurant{pluralS}")
+
+    <div class="row">
+        <div class="col-sm-4">
+            <table class="table table-bordered table-hover table-responsive">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Restaurant Name</th>
+                    <th scope="col">Cuisine</th>
+                </tr>
+
+                @{int i = 0;}
+                @foreach (var restaurant in Model)
+                {
+                    i++;
+                    <tr>
+                        <td>@i</td>
+                        <th>@restaurant.Name</th>
+                        <th>@restaurant.Cuisine.ToString()</th>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+</div>
