@@ -19,9 +19,11 @@ namespace OdeToFood.Web
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterApiControllers(typeof(MvcApplication).Assembly);
-            builder.RegisterType<InMemoryRestaurantData>()
+            builder.RegisterType<SqlRestaurantData>()
                 .As<IRestaurantData>()
-                .SingleInstance(); //Just for one user usage, makes InMemoryRestaurantData singleton
+                .InstancePerRequest();
+            builder.RegisterType<OdeToFoodDbContext>()
+                .InstancePerRequest();
 
             var Container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(Container));
