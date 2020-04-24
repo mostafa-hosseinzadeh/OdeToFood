@@ -35,5 +35,10 @@ namespace OdeToFood.Data.Services
             restaurant.Id = resturants.Max(r => r.Id) + 1; //Never do this in production!
 
         }
+        public void Update(Restaurant restaurant)
+        {
+            var index = resturants.FindIndex(r => r.Id == restaurant.Id);
+            resturants[index]= restaurant;
+        }
     }
 }
