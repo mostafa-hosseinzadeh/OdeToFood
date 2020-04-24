@@ -37,8 +37,12 @@ namespace OdeToFood.Data.Services
         }
         public void Update(Restaurant restaurant)
         {
-            var index = resturants.FindIndex(r => r.Id == restaurant.Id);
-            resturants[index]= restaurant;
+            var existing = Get(restaurant.Id);
+            if (existing != null)
+            {
+                existing.Name = restaurant.Name;
+                existing.Cuisine = restaurant.Cuisine;
+            }
         }
     }
 }
