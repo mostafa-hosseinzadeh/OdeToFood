@@ -1,42 +1,33 @@
 ﻿@model IEnumerable<OdeToFood.Data.Models.Restaurant>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
 
-<div class="row">
-    @{
-        var numberOfRestauraunt = @Model.Count();
-        string pluralS = "";
-    }
-    @{
-        if (numberOfRestauraunt > 1) { pluralS = "s"; }
-    }
-    @($"There are {numberOfRestauraunt} Restaurant{pluralS}")
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
 
-    <div class="row">
-        <div class="col-sm-4">
-            <table class="table table-bordered table-hover table-responsive">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Restaurant Name</th>
-                    <th scope="col">Cuisine</th>
-                </tr>
-
-                @{int i = 0;}
-                @foreach (var restaurant in Model)
-                {
-                    i++;
-                    <tr>
-                        <td>@i</td>
-                        <th>@restaurant.Name</th>
-                        <th>@restaurant.Cuisine.ToString()</th>
-                    </tr>
-                }
-            </table>
-        </div>
-    </div>
-
-</div>
+</table>

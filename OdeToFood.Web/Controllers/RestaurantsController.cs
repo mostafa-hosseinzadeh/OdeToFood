@@ -16,11 +16,16 @@ namespace OdeToFood.Web.Controllers
             this.db = db;
         }
 
-
-        // GET: Restaurants
+                // GET: Restaurants
         public ActionResult Index()
         {
             var model = db.GetAll();
+            return View(model);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var model = db.Get(id);
             return View(model);
         }
     }

@@ -8,7 +8,7 @@ namespace OdeToFood.Data.Services
     {
         List<Restaurant> resturants;
 
-        public IEnumerable<Restaurant> GetAll()
+        public InMemoryRestaurantData()
         {
             resturants = new List<Restaurant>()
             {
@@ -17,7 +17,17 @@ namespace OdeToFood.Data.Services
                 new Restaurant() {Id=3, Name="Taj Mahal",Cuisine = CuisineType.Indian},
                 new Restaurant() {Id=3, Name="Vakil",Cuisine = CuisineType.Iranian}
             };
+        }
+
+       public Restaurant Get(int id)
+        {
+            return resturants.FirstOrDefault(r => r.Id == id);
+        }
+
+        public IEnumerable<Restaurant> GetAll()
+        {
             return resturants.OrderBy(r => r.Name);
         }
+
     }
 }
